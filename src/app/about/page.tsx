@@ -69,9 +69,9 @@ const About = () => {
       <p>
         This is a paragraph before an <strong>unordered</strong> list (
         <code>ul</code>). Note that the spacing between a paragraph and a list
-        before or after that is hard to tune in a user style sheet. You can't
-        guess which paragraphs are logically related to a list, e.g. as a "list
-        header".
+        before or after that is hard to tune in a user style sheet. You cant
+        guess which paragraphs are logically related to a list, e.g. as a list
+        header.
       </p>
 
       <ul>
@@ -94,9 +94,9 @@ const About = () => {
       <p>
         This is a paragraph before a <strong>ordered</strong> list (
         <code>ol</code>). Note that the spacing between a paragraph and a list
-        before or after that is hard to tune in a user style sheet. You can't
-        guess which paragraphs are logically related to a list, e.g. as a "list
-        header".
+        before or after that is hard to tune in a user style sheet. You cant
+        guess which paragraphs are logically related to a list, e.g. as a list
+        header.
       </p>
 
       <ol>
@@ -120,8 +120,8 @@ const About = () => {
         This is a paragraph before a <strong>definition</strong> list (
         <code>dl</code>). In principle, such a list should consist of{' '}
         <em>terms</em> and associated definitions. But many authors use{' '}
-        <code>dl</code> elements for fancy "layout" things. Usually the effect
-        is not <em>too</em> bad, if you design user style sheet rules for{' '}
+        <code>dl</code> elements for fancy layout things. Usually the effect is
+        not <em>too</em> bad, if you design user style sheet rules for{' '}
         <code>dl</code> which are suitable for real definition lists.
       </p>
 
