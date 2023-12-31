@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --gutter: 4rem;
+  @media screen and (min-width: 768px) {
+    --gutter: 6rem;
+  }
+  @media screen and (min-width: 1024px) {
+    --gutter: 8rem;
+  }
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 66, 66, 66;
+    --background-end-rgb: 0, 0, 0;
+  }
+} */
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  background-repeat: no-repeat;
+}
+
+.grid-gap {
+  @apply gap-4 md:gap-6 lg:gap-8;
+}
+
+.grid-gap-sm {
+  @apply gap-2 md:gap-4 lg:gap-6;
+}
+
+.grid-gap-lg {
+  @apply gap-6 md:gap-8 lg:gap-10;
+}
+
+.grid-gap-xl {
+  @apply gap-8 md:gap-10 lg:gap-12;
+}
+
+.bi,
+.icon {
+  width: 1em;
+  height: 1em;
+}

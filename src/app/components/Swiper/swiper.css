@@ -1,0 +1,51 @@
+.swiper {
+  @apply h-full w-full;
+}
+
+.swiper-slide {
+  text-align: center;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper.carousel .swiper-slide {
+  width: calc(100% - calc(var(--gutter) * 2));
+  max-width: 1440px;
+  display: block;
+  position: relative;
+}
+.swiper.carousel .swiper-slide img {
+  @apply block aspect-[3/2] h-full w-full max-w-none object-cover object-center;
+}
+
+.swiper.carousel .swiper-slide {
+  @apply opacity-40 transition-opacity;
+}
+.swiper.carousel .swiper-slide-active {
+  @apply opacity-100;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  @apply absolute inset-y-0 flex h-full w-[calc(var(--gutter)-1.5rem)] items-center;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  color: black;
+}
+
+.swiper-button-prev {
+  @apply left-0;
+}
+.swiper-button-next {
+  @apply right-0;
+}
+
+.swiper-button-prev.swiper-button-disabled,
+.swiper-button-next.swiper-button-disabled {
+  @apply opacity-10;
+}
