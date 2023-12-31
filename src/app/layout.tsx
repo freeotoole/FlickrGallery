@@ -24,7 +24,7 @@ export default function RootLayout({
       >
         <Header />
         {children}
-        <footer className="mt-20 flex h-24 w-full flex-col items-center justify-center bg-gray-200 text-sm text-gray-500">
+        <footer className="mt-auto flex h-24 w-full flex-col items-center justify-center bg-gray-200 text-sm text-gray-500">
           Prototype of a Flickr Gallery still in development
         </footer>
       </body>

@@ -42,7 +42,7 @@ const Gallery = (props: GalleryProps) => {
     return acc
   }, [])
 
-  const gridClasses = `grid ${gap()} md:grid-cols-2 lg:grid-cols-${cols} justify-items-stretch w-full`
+  const gridClasses = `grid ${gap()} md:grid-cols-2 lg:grid-cols-${cols} justify-items-stretch w-full mb-20`
 
   const openModal = (image: any) => {
     console.log(image)
