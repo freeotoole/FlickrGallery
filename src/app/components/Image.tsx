@@ -95,7 +95,7 @@ const Image = (props: ImageProps) => {
             // height={getSrc("Large")?.height}
             // {...getSrc("Small")}
             alt={props.alt}
-            className={`block ${
+            className={`block max-h-[90vh] ${
               props.hover
                 ? 'transition-transform duration-700 group-hover:scale-125'
                 : ''

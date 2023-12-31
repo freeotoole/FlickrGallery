@@ -98,6 +98,7 @@ const Gallery = (props: GalleryProps) => {
             })} */}
           </section>
           <ImageModal
+            // onClick update seleted image to + or -
             image={selectedImage}
             isOpen={isOpen}
             setIsOpen={setIsOpen}

@@ -6,12 +6,12 @@ import Image from './Image'
 type ImageModalProps = {
   isOpen: boolean
   setIsOpen: (isOpen: boolean) => void
+  setNext?: (next: boolean) => void
   image: FlickrImageProps | null
 }
 
 function ImageModal({ image, isOpen, setIsOpen }: ImageModalProps) {
   // let [isOpen, setIsOpen] = useState(true)
-
   return (
     <Dialog
       className="relative z-50"
@@ -22,11 +22,14 @@ function ImageModal({ image, isOpen, setIsOpen }: ImageModalProps) {
       <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
         <Dialog.Panel className="relative my-20 bg-white">
           <div className="flex justify-between px-6">
-            <Dialog.Title>Image title</Dialog.Title>
+            <Dialog.Title>{image?.title}</Dialog.Title>
+
+            {/* <button onClick={() => set}>prev</button> */}
+            {/* <button onClick={() => setIsOpen(false)}>next</button> */}
             <button onClick={() => setIsOpen(false)}>x</button>
           </div>
           {/* <Dialog.Description>Image description</Dialog.Description> */}
-          <div className="relative">
+          <div className="relative p-4">
             {image && (
               <Image
                 className="h-auto max-h-[80vh] w-full max-w-[90vw]"

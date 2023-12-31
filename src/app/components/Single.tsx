@@ -37,7 +37,6 @@ const Single = () => {
                     photoId={image.id}
                     lazy={i > 2 && true}
                   />
-
                   <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
                 </div>
               ))}
