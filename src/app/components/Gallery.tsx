@@ -35,7 +35,7 @@ const Gallery = (props: GalleryProps) => {
     }
   }
 
-  const imageColumns = images?.reduce((acc, curr, i) => {
+  const imageColumns = images?.reduce((acc: any[], curr, i) => {
     const index = i % cols
     acc[index] = acc[index] || []
     acc[index].push(curr)
@@ -44,7 +44,7 @@ const Gallery = (props: GalleryProps) => {
 
   const gridClasses = `grid ${gap()} md:grid-cols-2 lg:grid-cols-${cols} justify-items-stretch w-full`
 
-  const openModal = (image) => {
+  const openModal = (image: any) => {
     console.log(image)
     setIsOpen(true)
     setSelectedImage(image)

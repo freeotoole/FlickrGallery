@@ -11,7 +11,7 @@ import { EffectFade, Keyboard, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 type CarouselProps = {
-  children: React.ReactNode
+  children: React.ReactNode[]
   type?: string
   options?: any
 }
@@ -40,7 +40,7 @@ const Carousel = ({ children, type, options }: CarouselProps) => {
       {children && (
         <Swiper {...options}>
           {/* <Slides /> */}
-          {children.map((child, i) => (
+          {children.map((child: any, i: number) => (
             <SwiperSlide key={i} className="">
               {child}
             </SwiperSlide>
