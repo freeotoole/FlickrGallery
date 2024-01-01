@@ -67,35 +67,30 @@ const Image = (props: ImageProps) => {
       src: imgSize?.source,
       width: imgSize?.width,
       height: imgSize?.height,
+      aspect:
+        imgSize && imgSize?.width > imgSize?.height
+          ? 'aspect-[3/2]'
+          : 'aspect-[2/3]',
     }
   }
 
   return (
     <>
       {loading ? (
-        <div className="block flex aspect-[3/2] w-[600px] max-w-full flex-1 items-center justify-center">
+        <div className="flex aspect-[3/2] w-[600px] max-w-full flex-1 items-center justify-center">
           <Loading />
         </div>
       ) : (
         <figure className={`${props.className} group relative overflow-hidden`}>
-          {/* <img srcset="large.jpg  1024w,
-      medium.jpg 640w,
-      small.jpg  320w"
-   sizes="(min-width: 36em) 33.3vw,
-      100vw"
-   src="small.jpg"
-   alt="A rad wolf" /> */}
-
           <img
             loading={props.lazy ? 'lazy' : 'eager'}
             srcSet={`${getSrc('Large')?.src} 1024w, ${getSrc('Medium')
               ?.src} 640w, ${getSrc('Small')?.src} 320w`}
             src={getSrc('Thumbnail')?.src}
-            // width={getSrc("Large")?.width}
-            // height={getSrc("Large")?.height}
-            // {...getSrc("Small")}
             alt={props.alt}
-            className={`block max-h-[90vh] ${
+            className={`block ${
+              getSrc('Large').aspect
+            } h-full w-full max-w-none object-cover object-center  ${
               props.hover
                 ? 'transition-transform duration-700 group-hover:scale-125'
                 : ''

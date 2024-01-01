@@ -29,10 +29,10 @@ function ImageModal({ image, isOpen, setIsOpen }: ImageModalProps) {
             <button onClick={() => setIsOpen(false)}>x</button>
           </div>
           {/* <Dialog.Description>Image description</Dialog.Description> */}
-          <div className="relative p-4">
+          <div className="relative px-4 pb-4">
             {image && (
               <Image
-                className="h-auto max-h-[80vh] w-full max-w-[90vw]"
+                className="h-auto max-h-[90vh] max-w-[90vw]"
                 alt={image.title}
                 title={image.title}
                 photoId={image.id}
