@@ -15,7 +15,7 @@ type ImageModalProps = {
 function ImageModal({ image, isOpen, setIsOpen, children }: ImageModalProps) {
   // let [isOpen, setIsOpen] = useState(true)
   const { currentImage, setCurrentImage } = useContext(PhotoContext)
-  // isOpen = true
+  isOpen = true
   return (
     <Dialog
       className="relative z-50"
@@ -27,7 +27,6 @@ function ImageModal({ image, isOpen, setIsOpen, children }: ImageModalProps) {
         <Dialog.Panel className="relative my-20 bg-black text-white">
           <div className="flex justify-between px-6">
             <Dialog.Title>{currentImage?.title}</Dialog.Title>
-
             <button onClick={() => setIsOpen(false)}>x</button>
           </div>
           {/* <Dialog.Description>Image description</Dialog.Description> */}

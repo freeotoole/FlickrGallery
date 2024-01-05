@@ -81,7 +81,11 @@ const Image = (props: ImageProps) => {
           <Loading />
         </div>
       ) : (
-        <figure className={`${props.className} group relative overflow-hidden`}>
+        <figure
+          className={`${props.className} ${
+            getSrc('Large').aspect
+          } group relative overflow-hidden`}
+        >
           <img
             loading={props.lazy ? 'lazy' : 'eager'}
             srcSet={`${getSrc('Large')?.src} 1024w, ${getSrc('Medium')
