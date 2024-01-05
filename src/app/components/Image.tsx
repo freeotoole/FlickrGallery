@@ -77,8 +77,8 @@ const Image = (props: ImageProps) => {
   return (
     <>
       {loading ? (
-        <div className="flex aspect-[3/2] w-[600px] max-w-full flex-1 items-center justify-center">
-          <Loading />
+        <div className="flex aspect-[3/2] w-[600px] max-w-full flex-1 items-center justify-center bg-gray-200">
+          {/* <Loading /> */}
         </div>
       ) : (
         <figure
@@ -101,7 +101,10 @@ const Image = (props: ImageProps) => {
             }`}
           />
           {props.hover && (
-            <figcaption className=" absolute inset-0 flex flex-col items-center justify-center gap-2 bg-black/50 p-6 text-white opacity-0 transition duration-500 group-hover:opacity-100">
+            <figcaption
+              aria-hidden="true"
+              className=" absolute inset-0 flex flex-col items-center justify-center gap-2 bg-black/50 p-6 text-white opacity-0 transition duration-500 group-hover:opacity-100"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"

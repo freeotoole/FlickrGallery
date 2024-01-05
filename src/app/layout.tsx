@@ -24,8 +24,17 @@ export default function RootLayout({
       >
         <Header />
         {children}
-        <footer className="mt-auto flex h-24 w-full flex-col items-center justify-center bg-gray-200 text-sm text-gray-500">
-          Prototype of a Flickr Gallery still in development
+        <footer className="mt-auto flex w-full flex-col items-center justify-center bg-gray-200 pb-3 pt-4 text-sm text-gray-700">
+          <p>
+            Flickr Gallery by{' '}
+            <a
+              className="underline hover:text-black"
+              href="https://freeotoole.com"
+              target="_blank"
+            >
+              Free O&apos;Toole
+            </a>
+          </p>
         </footer>
       </body>
     </html>
