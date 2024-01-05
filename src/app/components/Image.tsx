@@ -77,7 +77,7 @@ const Image = (props: ImageProps) => {
   return (
     <>
       {loading ? (
-        <div className="flex aspect-[3/2] w-[600px] max-w-full flex-1 items-center justify-center bg-gray-200">
+        <div className="flex aspect-[3/2] w-full flex-1 items-center justify-center">
           {/* <Loading /> */}
         </div>
       ) : (
