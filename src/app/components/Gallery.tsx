@@ -23,33 +23,9 @@ const Gallery = (props: GalleryProps) => {
   const [isOpen, setIsOpen] = React.useState(false)
   // const [selectedImage, setSelectedImage] = React.useState(0)
   const [initialSlide, setInitialSlide] = React.useState(0)
-  const cols = props.columns || 3
-  const gap = () => {
-    switch (props.gap) {
-      case 'sm':
-        return 'grid-gap-sm'
-      case 'md':
-        return 'grid-gap-md'
-      case 'lg':
-        return 'grid-gap-lg'
-      case 'xl':
-        return 'grid-gap-xl'
-      default:
-        return 'grid-gap'
-    }
-  }
-
-  const imageColumns = images?.reduce((acc: any[], curr, i) => {
-    const index = i % cols
-    acc[index] = acc[index] || []
-    acc[index].push(curr)
-    return acc
-  }, [])
 
   const openModal = (image: any, i: number) => {
-    // console.log(image)
     setIsOpen(true)
-    // setCurrentImage && setCurrentImage(image) // TODO: remove condition and fix type
     setInitialSlide(i)
   }
 
