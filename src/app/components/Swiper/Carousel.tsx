@@ -22,14 +22,14 @@ const Carousel = ({ children, type, options }: CarouselProps) => {
     spaceBetween: 24,
     keyboard: true,
     lazy: true,
-    lazyPreloadPrevNext: 3,
-    // mousewheel: true,
+    mousewheel: true,
     slidesPerView: 'auto',
     pagination: {
       clickable: true,
     },
     navigation: true,
     modules: [EffectFade, Keyboard, Pagination, Navigation],
+    // className: 'modal',
     className: 'carousel',
   }
 

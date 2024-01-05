@@ -6,9 +6,11 @@ import axios from 'axios'
 export const PhotoContext = createContext<{
   images: FlickrImageProps[] | null
   loading: boolean
+  currentImage: any
+  setCurrentImage?: (image: any) => void
   getAllPhotos?: (query: string) => void
   getPhotos?: (options: any) => void
-}>({ images: null, loading: false })
+}>({ images: null, loading: false, currentImage: null })
 
 interface PhotoContextProviderProps {
   children: React.ReactNode
@@ -29,29 +31,13 @@ export type FlickrImageProps = {
   }
 }
 
-/**
- * PROPS FOR REQUEST
- * safe_search (optional) [only if auth set up]
- *  - 1 for safe, 2 for moderate, 3 for restricted
- * content_type (optional)
- *  - 0 for photos only (default), 1 for screenshots only, 2 for 'other' only, 3 for virtual photos only
- * extras (optional)
- *  - description, license, date_upload, date_taken, owner_name, icon_server, original_format, last_update, geo, tags, machine_tags, o_dims, views, media, path_alias, url_sq, url_t, url_s, url_q, url_m, url_n, url_z, url_c, url_l, url_o
- * per_page (optional)
- * page (optional)
- */
-
-/**
- * FUTURE FEATURES
- * Tags - add options to filter by tags built from options list
- */
-
 function PhotoContextProvider(props: PhotoContextProviderProps) {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY
   const userId = process.env.NEXT_PUBLIC_USER_ID
   const [images, setImages] = useState<any[]>([])
   const [meta, setMeta] = useState<any>()
   const [loading, setLoading] = useState(true)
+  const [currentImage, setCurrentImage] = useState<any>(null)
 
   const getAllPhotos = useCallback(
     (options?: any) => {
@@ -86,10 +72,29 @@ function PhotoContextProvider(props: PhotoContextProviderProps) {
   }, [getAllPhotos])
 
   return (
-    <PhotoContext.Provider value={{ images, loading, getAllPhotos }}>
+    <PhotoContext.Provider
+      value={{ images, loading, currentImage, setCurrentImage, getAllPhotos }}
+    >
       {props.children}
     </PhotoContext.Provider>
   )
 }
 
 export default PhotoContextProvider
+
+/**
+ * PROPS FOR REQUEST
+ * safe_search (optional) [only if auth set up]
+ *  - 1 for safe, 2 for moderate, 3 for restricted
+ * content_type (optional)
+ *  - 0 for photos only (default), 1 for screenshots only, 2 for 'other' only, 3 for virtual photos only
+ * extras (optional)
+ *  - description, license, date_upload, date_taken, owner_name, icon_server, original_format, last_update, geo, tags, machine_tags, o_dims, views, media, path_alias, url_sq, url_t, url_s, url_q, url_m, url_n, url_z, url_c, url_l, url_o
+ * per_page (optional)
+ * page (optional)
+ */
+
+/**
+ * FUTURE FEATURES
+ * Tags - add options to filter by tags built from options list
+ */

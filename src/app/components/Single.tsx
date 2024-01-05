@@ -1,18 +1,10 @@
 'use client'
 
 import React, { useContext, useEffect } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { FlickrImageProps, PhotoContext } from '@/context/PhotosContext'
 import Image from './Image'
 import Loading from './Loading'
-// Import Swiper styles
-import 'swiper/css'
-import 'swiper/css/pagination'
-
-// import required modules
-import { Pagination } from 'swiper/modules'
-
 import Carousel from './Swiper/Carousel'
 
 const Single = () => {
@@ -29,7 +21,7 @@ const Single = () => {
           {images && (
             <Carousel>
               {images?.map((image: FlickrImageProps, i: number) => (
-                <div key={image.id}>
+                <div key={image.id} className="">
                   <Image
                     className=""
                     alt={image.title}

@@ -3,9 +3,11 @@
 import React, { useContext } from 'react'
 
 import { FlickrImageProps, PhotoContext } from '@/context/PhotosContext'
+import GalleryGrid from './GalleryGrid'
 import Image from './Image'
 import ImageModal from './ImageModal'
 import Loading from './Loading'
+import Single from './Single'
 
 interface GalleryProps {
   gap?: 'sm' | 'md' | 'lg' | 'xl'
@@ -16,16 +18,17 @@ interface GalleryProps {
 }
 
 const Gallery = (props: GalleryProps) => {
-  const { images, loading } = useContext(PhotoContext)
+  const { images, loading, currentImage, setCurrentImage } =
+    useContext(PhotoContext)
   const [isOpen, setIsOpen] = React.useState(false)
-  const [selectedImage, setSelectedImage] = React.useState(null)
+  const [selectedImage, setSelectedImage] = React.useState(0)
   const cols = props.columns || 3
   const gap = () => {
     switch (props.gap) {
       case 'sm':
         return 'grid-gap-sm'
       case 'md':
-        return 'grid-gap'
+        return 'grid-gap-md'
       case 'lg':
         return 'grid-gap-lg'
       case 'xl':
@@ -44,10 +47,10 @@ const Gallery = (props: GalleryProps) => {
 
   const gridClasses = `grid ${gap()} md:grid-cols-2 lg:grid-cols-${cols} justify-items-stretch w-full mb-20`
 
-  const openModal = (image: any) => {
+  const openModal = (image: any, i: number) => {
     console.log(image)
     setIsOpen(true)
-    setSelectedImage(image)
+    setCurrentImage && setCurrentImage(image) // TODO: remove condition and fix type
   }
 
   return (
@@ -60,50 +63,31 @@ const Gallery = (props: GalleryProps) => {
           {props.subtitle}
         </h3>
       )}
-      {loading ? (
-        <Loading />
-      ) : (
+      {images ? (
         <>
-          <section className={gridClasses}>
-            {imageColumns?.map((column, i) => {
+          <GalleryGrid columns={3} gap="sm">
+            {images?.map((image: FlickrImageProps, i: number) => {
               return (
-                <div key={i} className={`relative flex flex-col ${gap()}`}>
-                  {column?.map((image: FlickrImageProps, i: number) => {
-                    return (
-                      <button key={i} onClick={() => openModal(image)}>
-                        <Image
-                          hover
-                          className="h-auto w-full"
-                          alt={image.title}
-                          title={image.title}
-                          photoId={image.id}
-                        />
-                      </button>
-                    )
-                  })}
-                </div>
-              )
-            })}
-            {/* {images?.map((image, i) => {
-              return (
-                <article key={i}>
+                <button key={i} onClick={() => openModal(image, i)}>
                   <Image
-                    className="w-full h-auto"
+                    hover
+                    className="h-auto w-full"
                     alt={image.title}
                     title={image.title}
                     photoId={image.id}
                   />
-                </article>
-              );
-            })} */}
-          </section>
-          <ImageModal
-            // onClick update seleted image to + or -
-            image={selectedImage}
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-          />
+                </button>
+              )
+            })}
+          </GalleryGrid>
+
+          <ImageModal isOpen={isOpen} setIsOpen={setIsOpen}>
+            <Single />
+            {/* TODO: Build Carousel out in modal */}
+          </ImageModal>
         </>
+      ) : (
+        <Loading />
       )}
     </div>
   )

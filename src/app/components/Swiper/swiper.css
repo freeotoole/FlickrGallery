@@ -1,5 +1,5 @@
 .swiper {
-  @apply h-full w-full;
+  /* @apply flex h-full w-full items-center; */
 }
 
 .swiper-slide {
@@ -9,23 +9,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.swiper.carousel .swiper-slide {
-  width: calc(100% - calc(var(--gutter) * 2));
-  max-width: 1440px;
-  display: block;
-  position: relative;
-}
-.swiper.carousel .swiper-slide img {
-  @apply block aspect-[3/2] h-full w-full max-w-none object-cover object-center;
-}
-
-.swiper.carousel .swiper-slide {
-  @apply opacity-40 transition-opacity;
-}
-.swiper.carousel .swiper-slide-active {
-  @apply opacity-100;
 }
 
 .swiper-button-prev,
@@ -48,4 +31,24 @@
 .swiper-button-prev.swiper-button-disabled,
 .swiper-button-next.swiper-button-disabled {
   @apply opacity-10;
+}
+
+.swiper.carousel .swiper-slide {
+  width: calc(100% - calc(var(--gutter) * 2));
+  max-width: 1440px;
+  display: block;
+  position: relative;
+}
+.swiper.carousel .swiper-slide img {
+  @apply block aspect-[3/2] h-full w-full max-w-none object-cover object-center;
+}
+
+.swiper.carousel .swiper-slide {
+  @apply opacity-40 transition-opacity;
+}
+.swiper.carousel .swiper-slide-active {
+  @apply opacity-100;
+}
+
+.swiper.modal {
 }

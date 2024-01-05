@@ -8,10 +8,10 @@
   --background-end-rgb: 255, 255, 255;
   --gutter: 0.5rem;
   @media screen and (min-width: 768px) {
-    --gutter: 4rem;
+    --gutter: 1rem;
   }
   @media screen and (min-width: 1024px) {
-    --gutter: 8rem;
+    --gutter: 2rem;
   }
 }
 
@@ -34,20 +34,21 @@ body {
   background-repeat: no-repeat; */
 }
 
-.grid-gap {
-  @apply gap-4 md:gap-6 lg:gap-8;
+.grid-gap-sm {
+  @apply gap-1 md:gap-2 lg:gap-3;
 }
 
-.grid-gap-sm {
+.grid-gap,
+.grid-gap-md {
   @apply gap-2 md:gap-4 lg:gap-6;
 }
 
 .grid-gap-lg {
-  @apply gap-6 md:gap-8 lg:gap-10;
+  @apply gap-4 md:gap-6 lg:gap-8;
 }
 
 .grid-gap-xl {
-  @apply gap-8 md:gap-10 lg:gap-12;
+  @apply gap-6 md:gap-8 lg:gap-10;
 }
 
 .bi,
