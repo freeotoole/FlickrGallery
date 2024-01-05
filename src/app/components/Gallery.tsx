@@ -1,13 +1,13 @@
 'use client'
 
 import React, { useContext } from 'react'
+import { Transition } from '@headlessui/react'
 
 import { FlickrImageProps, PhotoContext } from '@/context/PhotosContext'
 import GalleryGrid from './GalleryGrid'
 import Image from './Image'
-import ImageModal from './ImageModal'
 import Loading from './Loading'
-import Single from './Single'
+import Carousel from './Swiper/Carousel'
 
 interface GalleryProps {
   gap?: 'sm' | 'md' | 'lg' | 'xl'
@@ -21,7 +21,8 @@ const Gallery = (props: GalleryProps) => {
   const { images, loading, currentImage, setCurrentImage } =
     useContext(PhotoContext)
   const [isOpen, setIsOpen] = React.useState(false)
-  const [selectedImage, setSelectedImage] = React.useState(0)
+  // const [selectedImage, setSelectedImage] = React.useState(0)
+  const [initialSlide, setInitialSlide] = React.useState(0)
   const cols = props.columns || 3
   const gap = () => {
     switch (props.gap) {
@@ -45,12 +46,15 @@ const Gallery = (props: GalleryProps) => {
     return acc
   }, [])
 
-  const gridClasses = `grid ${gap()} md:grid-cols-2 lg:grid-cols-${cols} justify-items-stretch w-full mb-20`
-
   const openModal = (image: any, i: number) => {
-    console.log(image)
+    // console.log(image)
     setIsOpen(true)
-    setCurrentImage && setCurrentImage(image) // TODO: remove condition and fix type
+    // setCurrentImage && setCurrentImage(image) // TODO: remove condition and fix type
+    setInitialSlide(i)
+  }
+
+  const closeModal = () => {
+    setIsOpen(false)
   }
 
   return (
@@ -65,26 +69,38 @@ const Gallery = (props: GalleryProps) => {
       )}
       {images ? (
         <>
-          <GalleryGrid columns={3} gap="sm">
-            {images?.map((image: FlickrImageProps, i: number) => {
-              return (
-                <button key={i} onClick={() => openModal(image, i)}>
+          {!isOpen ? (
+            <GalleryGrid columns={3} gap="sm">
+              {images?.map((image: FlickrImageProps, i: number) => {
+                return (
+                  <button key={i} onClick={() => openModal(image, i)}>
+                    <Image
+                      hover
+                      className="h-auto w-full"
+                      alt={image.title}
+                      title={image.title}
+                      photoId={image.id}
+                    />
+                  </button>
+                )
+              })}
+            </GalleryGrid>
+          ) : (
+            <Carousel initialSlide={initialSlide} closeModal={closeModal}>
+              {images?.map((image: FlickrImageProps, i: number) => (
+                <div key={image.id} className="relative w-full">
                   <Image
-                    hover
-                    className="h-auto w-full"
+                    className="mx-auto h-full max-h-screen"
                     alt={image.title}
                     title={image.title}
                     photoId={image.id}
+                    lazy={i > 2 && true}
                   />
-                </button>
-              )
-            })}
-          </GalleryGrid>
-
-          <ImageModal isOpen={isOpen} setIsOpen={setIsOpen}>
-            <Single />
-            {/* TODO: Build Carousel out in modal */}
-          </ImageModal>
+                  <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                </div>
+              ))}
+            </Carousel>
+          )}
         </>
       ) : (
         <Loading />

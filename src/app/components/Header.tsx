@@ -4,12 +4,6 @@ const Header = () => {
       <h1 className="text-base font-light uppercase tracking-widest ">
         <a href="/">Free O&apos;Toole</a>
       </h1>
-      <a
-        href="/photos"
-        className="text-sm text-gray-500 no-underline hover:underline"
-      >
-        big slider version
-      </a>
     </header>
   )
 }
