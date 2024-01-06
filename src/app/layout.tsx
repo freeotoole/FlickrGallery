@@ -24,7 +24,7 @@ export default function RootLayout({
       >
         <Header />
         {children}
-        <footer className="mt-auto flex w-full  justify-between bg-gray-200 px-[var(--gutter)] pb-3 pt-4 text-sm">
+        <footer className="mt-auto flex w-full flex-col justify-between  bg-gray-200 px-[var(--gutter)] pb-3 pt-4 text-sm md:flex-row">
           {/* describe the project and technologies involved */}
           <p className="text-black">
             <span className="uppercase tracking-wide">Flickr Gallery</span> by{' '}
