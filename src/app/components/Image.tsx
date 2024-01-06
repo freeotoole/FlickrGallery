@@ -7,7 +7,6 @@ export type ImageProps = {
   photoId: string
   alt: string
   title: string
-  // tags?: string
   className?: string
   hover?: boolean
   lazy?: boolean

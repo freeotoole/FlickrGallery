@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useContext } from 'react'
+import { useSearchParams } from 'next/navigation'
 
 // import { Transition } from '@headlessui/react'
 
@@ -33,6 +34,13 @@ const Gallery = (props: GalleryProps) => {
   const closeModal = () => {
     setIsOpen(false)
   }
+  const tagParams = useSearchParams()
+
+  const tag = tagParams.get('tag')
+  // filter images if tag cincludes substring "film"
+  const filteredImages = images?.filter((image: FlickrImageProps) => {
+    return image.tags.includes(tag ? tag : '')
+  })
 
   return (
     <div>
@@ -44,11 +52,11 @@ const Gallery = (props: GalleryProps) => {
           {props.subtitle}
         </h3>
       )}
-      {images ? (
+      {filteredImages ? (
         <>
           {!isOpen ? (
             <GalleryGrid columns={3} gap="sm">
-              {images?.map((image: FlickrImageProps, i: number) => {
+              {filteredImages?.map((image: FlickrImageProps, i: number) => {
                 return (
                   <button key={i} onClick={() => openModal(image, i)}>
                     <Image
@@ -64,13 +72,12 @@ const Gallery = (props: GalleryProps) => {
             </GalleryGrid>
           ) : (
             <Carousel initialSlide={initialSlide} closeModal={closeModal}>
-              {images?.map((image: FlickrImageProps, i: number) => (
+              {filteredImages?.map((image: FlickrImageProps, i: number) => (
                 <div key={image.id} className="relative w-full">
                   <Image
                     className="mx-auto h-full max-h-screen"
                     alt={image.title}
                     title={image.title}
-                    // tags={image.tags}
                     photoId={image.id}
                     lazy={i > 2 && true}
                   />
