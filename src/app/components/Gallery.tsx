@@ -1,7 +1,8 @@
 'use client'
 
 import React, { useContext } from 'react'
-import { Transition } from '@headlessui/react'
+
+// import { Transition } from '@headlessui/react'
 
 import { FlickrImageProps, PhotoContext } from '@/context/PhotosContext'
 import GalleryGrid from './GalleryGrid'
@@ -14,6 +15,7 @@ interface GalleryProps {
   columns?: number
   options?: any
   title?: string
+  tags?: string
   subtitle?: string
 }
 
@@ -21,7 +23,6 @@ const Gallery = (props: GalleryProps) => {
   const { images, loading, currentImage, setCurrentImage } =
     useContext(PhotoContext)
   const [isOpen, setIsOpen] = React.useState(false)
-  // const [selectedImage, setSelectedImage] = React.useState(0)
   const [initialSlide, setInitialSlide] = React.useState(0)
 
   const openModal = (image: any, i: number) => {
@@ -69,6 +70,7 @@ const Gallery = (props: GalleryProps) => {
                     className="mx-auto h-full max-h-screen"
                     alt={image.title}
                     title={image.title}
+                    // tags={image.tags}
                     photoId={image.id}
                     lazy={i > 2 && true}
                   />

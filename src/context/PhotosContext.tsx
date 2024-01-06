@@ -29,6 +29,7 @@ export type FlickrImageProps = {
   description: {
     _content: string
   }
+  tags: string
 }
 
 function PhotoContextProvider(props: PhotoContextProviderProps) {
@@ -43,10 +44,10 @@ function PhotoContextProvider(props: PhotoContextProviderProps) {
     (options?: any) => {
       axios
         .get(
-          `https://www.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&user_id=${userId}&extras=description&format=json&nojsoncallback=1&api_key=${apiKey}&per_page=24}`
+          `https://www.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&user_id=${userId}&extras=description,tags&format=json&nojsoncallback=1&api_key=${apiKey}&per_page=24}`
         )
         .then((response) => {
-          //   console.log(response);
+          // console.log('response.data.photos.photo', response.data.photos.photo)
           setImages(response.data.photos.photo)
           setMeta({
             page: response.data.photos.page,
