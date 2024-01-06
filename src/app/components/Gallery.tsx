@@ -34,10 +34,9 @@ const Gallery = (props: GalleryProps) => {
   const closeModal = () => {
     setIsOpen(false)
   }
-  const tagParams = useSearchParams()
+  const searchParams = useSearchParams()
 
-  const tag = tagParams.get('tag')
-  // filter images if tag cincludes substring "film"
+  const tag = searchParams.get('tag')
   const filteredImages = images?.filter((image: FlickrImageProps) => {
     return image.tags.includes(tag ? tag : '')
   })
