@@ -38,7 +38,7 @@ export const usePhotos = () => {
 }
 
 // Create a provider component to wrap your app with the photo content
-export const PhotosProvider: React.FC = ({ children }) => {
+export const PhotosProvider: React.FC = ({ children }: any) => {
   const { photos, error } = usePhotos()
 
   // Render the children with the photo content as the value of the context
