@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Space_Grotesk } from 'next/font/google' // Yanone_Kaffeesatz | Space_Grotesk
 
+import Footer from './components/Footer'
 import Header from './components/Header'
 
 import './globals.css'
@@ -24,36 +25,7 @@ export default function RootLayout({
       >
         <Header />
         {children}
-        <footer className="mt-auto flex w-full flex-col justify-between  bg-gray-200 px-[var(--gutter)] pb-3 pt-4 text-sm md:flex-row">
-          {/* describe the project and technologies involved */}
-          <p className="text-black">
-            <span className="uppercase tracking-wide">Flickr Gallery</span> by{' '}
-            <a
-              className="underline hover:text-red-700"
-              href="https://freeotoole.com"
-              target="_blank"
-            >
-              Free O&apos;Toole
-            </a>
-          </p>
-          <p className="text-gray-700">
-            Built with <a href="https://nextjs.org">Next.js</a>,{' '}
-            <a
-              className="underline hover:text-black"
-              href="https://tailwindcss.com"
-            >
-              Tailwind CSS
-            </a>
-            , and the{' '}
-            <a
-              className="underline hover:text-black"
-              href="https://www.flickr.com/services/api"
-            >
-              Flickr API
-            </a>
-            .
-          </p>
-        </footer>
+        <Footer />
       </body>
     </html>
   )

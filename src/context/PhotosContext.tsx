@@ -7,8 +7,8 @@ export const PhotoContext = createContext<{
   images: FlickrImageProps[] | null
   loading: boolean
   currentImage: any
-  setCurrentImage?: (image: any) => void
-  getAllPhotos?: (query: string) => void
+  setLoading?: (image: any) => void
+  getAllPhotos?: (options?: any) => void
   getPhotos?: (options: any) => void
 }>({ images: null, loading: false, currentImage: null })
 
@@ -39,22 +39,41 @@ function PhotoContextProvider(props: PhotoContextProviderProps) {
   const [meta, setMeta] = useState<any>()
   const [loading, setLoading] = useState(true)
   const [currentImage, setCurrentImage] = useState<any>(null)
+  const FlickrUrl = 'https://www.flickr.com/services/rest/'
 
   const getAllPhotos = useCallback(
     (options?: any) => {
-      axios
-        .get(
-          `https://www.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&user_id=${userId}&extras=description,tags&format=json&nojsoncallback=1&api_key=${apiKey}&per_page=24}`
+      setLoading(true)
+
+      const defaultOptions = {
+        method: 'flickr.people.getPublicPhotos',
+        user_id: userId,
+        extras: 'description,tags',
+        format: 'json',
+        nojsoncallback: 1,
+        api_key: apiKey,
+        page: 1,
+        per_page: 24,
+      }
+      options = { ...defaultOptions, ...options }
+      const queryParams = Object.keys(options)
+        .map(
+          (key) =>
+            `${encodeURIComponent(key)}=${encodeURIComponent(options[key])}`
         )
+        .join('&')
+      axios
+        .get(`${FlickrUrl}?${queryParams}`)
         .then((response) => {
-          // console.log('response.data.photos.photo', response.data.photos.photo)
-          setImages(response.data.photos.photo)
-          setMeta({
-            page: response.data.photos.page,
-            pages: response.data.photos.pages,
-            perpage: response.data.photos.perpage,
-            total: response.data.photos.total,
-          })
+          setImages(
+            response.data.photos?.photo || response.data.photoset?.photo
+          )
+          // setMeta({
+          //   page: response.data.photos.page,
+          //   pages: response.data.photos.pages,
+          //   perpage: response.data.photos.perpage,
+          //   total: response.data.photos.total,
+          // })
 
           setLoading(false)
         })
@@ -68,13 +87,9 @@ function PhotoContextProvider(props: PhotoContextProviderProps) {
     [apiKey, userId]
   )
 
-  useEffect(() => {
-    getAllPhotos()
-  }, [getAllPhotos])
-
   return (
     <PhotoContext.Provider
-      value={{ images, loading, currentImage, setCurrentImage, getAllPhotos }}
+      value={{ images, loading, currentImage, setLoading, getAllPhotos }}
     >
       {props.children}
     </PhotoContext.Provider>

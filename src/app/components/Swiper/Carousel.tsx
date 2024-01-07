@@ -32,9 +32,6 @@ const Carousel = ({
     lazy: true,
     mousewheel: true,
     slidesPerView: 'auto',
-    pagination: {
-      clickable: true,
-    },
     navigation: true,
     modules: [EffectFade, Keyboard, Pagination, Navigation],
   }
