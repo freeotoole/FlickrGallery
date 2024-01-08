@@ -88,9 +88,14 @@ const Image = (props: ImageProps) => {
         >
           <img
             loading={props.lazy ? 'lazy' : 'eager'}
-            srcSet={`${getSrc('Large')?.src} 1024w, ${getSrc('Medium')
-              ?.src} 640w, ${getSrc('Small')?.src} 320w`}
-            src={getSrc('Thumbnail')?.src}
+            sizes="
+            (max-width: 640px) calc(100vw - 1rem), 
+            (max-width: 1024px) calc(50vw - 3rem), 
+            calc(30vw - 6rem)
+          "
+            srcSet={`${getSrc('Large')?.src} 1024w, ${getSrc('Medium 640')
+              ?.src} 640w, ${getSrc('Small 320')?.src} 320w`}
+            src={getSrc('Small')?.src}
             alt={props.alt}
             className={`block ${
               getSrc('Large').aspect
